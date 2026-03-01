@@ -4,6 +4,8 @@
 # Скрипт для установки нод и скачивания моделей ПОСЛЕ запуска ComfyUI
 # =============================================================================
 
+curl -fsSL https://raw.githubusercontent.com/vast-ai/base-image/refs/heads/main/derivatives/pytorch/derivatives/comfyui/provisioning_scripts/default.sh | bash
+
 echo "=== Запуск пользовательского скрипта ==="
 
 # Путь к ComfyUI
