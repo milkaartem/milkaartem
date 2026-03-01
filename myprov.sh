@@ -56,8 +56,8 @@ wget --continue -O text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors \
 
 CIVITAI_TOKEN="286e8ec5eab4ab91ebf800c88b612d68"
 echo "→ zimage-turbo-nsfw (Civitai)"
-[ ! -s checkpoints/zimage-turbo-nsfw-2602-bf16.safetensors ] && \
-wget --continue -O checkpoints/zimage-turbo-nsfw-2602-bf16.safetensors \
-  "https://civitai.com/api/download/models/2668773?type=Model&format=SafeTensor&size=full&fp=bf16&token=$CIVITAI_TOKEN"
+[ ! -s checkpoints/reazit.safetensors ] && \
+wget --continue -O checkpoints/reazit.safetensors \
+  "https://civitai.com/api/download/models/2689145?type=Model&format=SafeTensor&size=full&fp=fp16&token=$CIVITAI_TOKEN"
 
 echo "=== Все операции завершены ==="
