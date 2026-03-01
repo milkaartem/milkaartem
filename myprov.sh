@@ -9,42 +9,7 @@ COMFYUI_DIR="/workspace/ComfyUI"
 CUSTOM_NODES_DIR="$COMFYUI_DIR/custom_nodes"
 MODELS_DIR="$COMFYUI_DIR/models"
 
-# Активируем виртуальное окружение
-source /venv/main/bin/activate 2>/dev/null || echo "venv не найден"
 
-# =============================================================================
-# Установка custom nodes
-# =============================================================================
-echo "=== Установка custom nodes ==="
-
-mkdir -p "$CUSTOM_NODES_DIR"
-cd "$CUSTOM_NODES_DIR" || exit 1
-
-declare -A NODES=(
-    ["ComfyUI-KJNodes"]="https://github.com/kijai/ComfyUI-KJNodes"
-)
-
-for node_name in "${!NODES[@]}"; do
-    repo_url="${NODES[$node_name]}"
-    node_path="$CUSTOM_NODES_DIR/$node_name"
-
-    if [ -d "$node_path" ]; then
-        echo "Нода $node_name уже существует → обновляем..."
-        cd "$node_path" && git pull --ff-only || echo "Не удалось обновить $node_name"
-    else
-        echo "Устанавливаем ноду $node_name..."
-        git clone "$repo_url" "$node_path"
-        cd "$node_path"
-    fi
-
-    if [ -f "requirements.txt" ]; then
-        pip install -r requirements.txt --no-cache-dir || echo "Не удалось установить зависимости для $node_name"
-    fi
-
-    cd "$CUSTOM_NODES_DIR"
-done
-
-echo "Установка нод завершена."
 
 # =============================================================================
 # Скачивание моделей
